@@ -49,50 +49,6 @@ tim.init(freq=2.5, mode=Timer.PERIODIC, callback=tick)
 
 >6. For more usage methods, please refer to the Micro python [documentation](http://docs.micropython.org/).
 
-### Platform IO
-
->Option 1: using the standard Arduino-mbed core that's built in to PIO. The packages and toolchain are all installed by the PIO GUI when you create a new project. Use these options in setup:
-
-![image](https://user-images.githubusercontent.com/24273979/204114810-5935b9a0-ce68-4bf8-b8d3-7139c1f3d3c0.png)
-
-
-
-
->Option 2: This makes use of the same 'earlephilhower arduino-pico core' that is available in Arduino IDE, however this core is not fully supported (yet) on PlatformIO and is waiting for this pull request: https://github.com/platformio/platform-raspberrypi/pull/36
-
->In the meantime here are the steps to create your project: 
-https://github.com/earlephilhower/arduino-pico/blob/master/docs/platformio.rst
-
-Here is my platformio.ini file:
-```
-[env:pico]
-platform = https://github.com/maxgerhardt/platform-raspberrypi.git
-board = pico
-board_build.core = earlephilhower
-framework = arduino
-build_flags = 
-	-I ../include
-lib_deps = 
-	khoih-prog/ESP_AT_Lib@^1.4.1
-```
-To connect to the T-PicoC3 via UART for Wifi I am using this excellent library (installed by PIO GUI): https://github.com/khoih-prog/ESP_AT_Lib
-Note that there is a workaround required to access `Serial2` and `TX-8, RX-9` on the T-Pico device. It's explained here: https://github.com/khoih-prog/ESP_AT_Lib/discussions/4
-
-
-Here is the first few rows of the build terminal output showing the configuration and packages:
-
-CONFIGURATION: https://docs.platformio.org/page/boards/raspberrypi/pico.html
-PLATFORM: Raspberry Pi RP2040 (1.7.0) > Raspberry Pi Pico
-HARDWARE: RP2040 133MHz, 264KB RAM, 2MB Flash
-DEBUG: Current (cmsis-dap) External (cmsis-dap, jlink, raspberrypi-swd)
-PACKAGES:
- - framework-arduino-mbed @ 3.1.1
- - tool-openocd-raspberrypi @ 2.1100.0 (11.0)
- - tool-rp2040tools @ 1.0.2
- - toolchain-gccarmnoneeabi @ 1.90201.191206 (9.2.1)
-
-Thanks [@jimemo](https://github.com/jimemo)
-
 ---
 ## ESP32-C3
 ### Arduino 
@@ -107,8 +63,16 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
 ```
 > 3. Go to Tools->Boards->Board Manager in the IDE
-> 4. Type "ESP32C3 Dev" in the search box and select "Add":
+> 4. Type "EPS32C3 Dev" in the search box and select "Add":
 > 5. Click any "file-> example-> all esp32 esamle" and upload the run
+
+***
+⚠⚠⚠
+If you have an ESP32C3 upload error, please check this [video](https://youtu.be/nWWPiNTJAAg). If you use a non-standard TYPE-C cable, the blue and green lights of the board will be on. At this time, it is impossible to judge which disconnection is C3. Please replace the data cable.
+The operation method in the video is to short-circuit the IO09 pad and GND before starting, and then plug it into the USB port. At this time, the ESP32C3 is in the waiting burning mode, and then write.
+
+This video operation method only needs to be used when it cannot be written. If you are using Arduino, you don’t need to follow this method after the second and third times.
+***
 
 #### ESP32-C3 Upload method
 * ESP32C3 mainly uses ESP32-AT firmware here. If you want to use it as a coprocessor, you can modify the firmware.
@@ -117,9 +81,9 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 
 
 
-| Product    |  Product Link  |
-| :--------: | :------------: |
-| T-PicoC3   | [Amazon(USA)](https://www.amazon.com/dp/B0B3RF87VG?ref=myi_title_dp)  |
+| Product  |                             Product Link                             |
+| :------: | :------------------------------------------------------------------: |
+| T-PicoC3 | [Amazon(USA)](https://www.amazon.com/dp/B0B3RF87VG?ref=myi_title_dp) |
 
 | Pins       | RP2040          |
 | ---------- | --------------- |
