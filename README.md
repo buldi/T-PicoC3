@@ -84,6 +84,7 @@ This video operation method only needs to be used when it cannot be written. If 
 | Product  |                             Product Link                             |
 | :------: | :------------------------------------------------------------------: |
 | T-PicoC3 | [Amazon(USA)](https://www.amazon.com/dp/B0B3RF87VG?ref=myi_title_dp) |
+| T-PicoC3 | [Aliexpress](https://www.aliexpress.com/item/1005004164141662.html)  |
 
 | Pins       | RP2040          |
 | ---------- | --------------- |
